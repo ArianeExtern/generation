@@ -34,5 +34,6 @@ class FileGenerator{
 	
 	public function put($output){
 		file_put_contents($output, $this->render());
+		//chmod($output, 777);
 	}
 }

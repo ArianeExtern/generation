@@ -28,30 +28,57 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
         foreach($this->mda as $tableName => $table){
             $table['title'] = $tableName;
             $fileGenerator = new FileGenerator(TemplateProvider::getTemplate($template), ["table" => $table]);
-            $fileGenerator->put(base_path('out/'.$outdir).'/'.$tableName.'.php');
+
+            if($template == "schema"){
+                $path = base_path('out/'.$outdir).'/'.date('j_m_y_h_i_s').'_create_'.$tableName.'_table.php';
+            }else{
+                $path = base_path('out/'.$outdir).'/'.$tableName.'.php';
+            }
+
+            $fileGenerator->put($path);
+
+            //Change Dir Right.
+            chmod($path, 0777);
         }
     }
 
+    /**
+     * Function generate a Model php files for the given MCD
+     */
     function generateLaravelModel()
     {
         $this->generateLaravel("model", "model");
     }
 
+    /**
+     * Function generating Schema php files for the given MCD
+     */
     function generateLaravelSchema()
     {
         $this->generateLaravel("schema", "schema");
     }
 
+    /**
+     * Function generating Controller php files for the given MCD
+     */
     function generateLaravelController()
     {
         $this->generateLaravel("controller", "controller");
     }
 
+    /**
+     * generating Form .blade.php files for the given MCD
+     */
     function generateLaravelForm()
     {
         $this->generateLaravel("form", "form");
     }
 
+    /**
+     * Funcion generating the Files dynamically based on a Given param
+     *
+     * @param string $type : Allowed => Form, Model, Schema and Controller.
+     */
     public function generate($type = "Form")
     {
         $generateMethod = "generateLaravel".$type;

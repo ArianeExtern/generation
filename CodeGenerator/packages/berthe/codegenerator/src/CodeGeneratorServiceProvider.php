@@ -3,6 +3,7 @@
 namespace Berthe\Codegenerator;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Event;
 
 class CodeGeneratorServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,18 @@ class CodeGeneratorServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__.'/views', 'templates');
+
+        //Cmd
+        $this->app->bind('Berthe\Codegenerator\GenerateCodeCmd', function($app) {
+            return new GenerateCodeCmd();
+        });
+        $this->commands(array(
+            'Berthe\Codegenerator\GenerateCodeCmd'
+        ));
+
+        //Event
+        Event::listen('launch', 'App\in\GeneratorCode@index');
+
     }
 
     /**
@@ -23,8 +36,8 @@ class CodeGeneratorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        include __DIR__.'/routes.php';
-        $this->app->make('Berthe\Codegenerator\CodeGeneratorController');
+        //include __DIR__.'/routes.php';
+        $this->app->make('Berthe\Codegenerator\CallGenerator');
 	    $this->app->make('Berthe\Codegenerator\FileGenerator');
         //$this->app->make('Berthe\Codegenerator\ILaravelCodeGenerator');
         $this->app->make('Berthe\Codegenerator\LaravelCodeGenerator');
