@@ -1,4 +1,4 @@
-@extends('default')
+@extends('formMaster')
 
 @section('title')
 	{{ ucfirst($table['title'])}}
