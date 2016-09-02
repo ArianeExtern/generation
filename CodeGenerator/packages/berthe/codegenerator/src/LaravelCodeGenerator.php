@@ -35,6 +35,7 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
      * Function generating a view Based on it name
      * @param string $template
      * @param string $outdir
+     * @return $this
      */
     function generateLaravel($template = "form", $outdir = "form")
     {
@@ -42,10 +43,15 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
             $table['title'] = $tableName;
             $fileGenerator = new FileGenerator(TemplateProvider::getTemplate($template), ["table" => $table]);
 
+            //Because Schema have particular name, we have to specify that.
             if($template == "schema"){
-                $path = base_path('out/'.$outdir).'/'.date('j_m_y_h_i_s').'_create_'.$tableName.'_table.php';
+                $path = base_path($outdir).'/20'.date('y_m_0j_his').'_create_'.$tableName.'_table.php';
+            }else if($template == "controller"){
+                $path = base_path($outdir).'/'.ucfirst($tableName).'Controller.php';
+            }else if($template == "model"){
+                $path = base_path($outdir).'/'.ucfirst($tableName).'.php';
             }else{
-                $path = base_path('out/'.$outdir).'/'.$tableName.'.php';
+                $path = base_path($outdir).'/'.$tableName.'.blade.php';
             }
 
             $fileGenerator->put($path);
@@ -53,8 +59,8 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
             //Change Dir Right.
             chmod($path, 0777);
 
-            if(in_array($template, array("model", "schema", "controller")))
-                yield $path;
+            //if(in_array($template, array("model", "schema", "controller")))
+            yield $path;
         }
     }
 
@@ -63,7 +69,7 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
      */
     function generateLaravelModel()
     {
-        $this->prependStringToFile("<?php \n", $this->generateLaravel("model", "model"));
+        $this->prependStringToFile("<?php \n", $this->generateLaravel("model", "app"));
     }
 
     /**
@@ -71,7 +77,7 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
      */
     function generateLaravelSchema()
     {
-        $this->prependStringToFile("<?php \n", $this->generateLaravel("schema", "schema"));
+        $this->prependStringToFile("<?php \n", $this->generateLaravel("schema", "database/migrations"));
     }
 
     /**
@@ -79,7 +85,7 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
      */
     function generateLaravelController()
     {
-        $this->prependStringToFile("<?php \n", $this->generateLaravel("controller", "controller"));
+        $this->prependStringToFile("<?php \n", $this->generateLaravel("controller", "app/Http/Controllers"));
     }
 
     /**
@@ -87,7 +93,7 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
      */
     function generateLaravelForm()
     {
-        $this->prependStringToFile("", $this->generateLaravel("form", "form"));
+        $this->prependStringToFile("", $this->generateLaravel("form", "resources/views"));
     }
 
     /**

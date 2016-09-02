@@ -1,7 +1,7 @@
-
+<?php 
 namespace App\Http\Controllers;
 
-class <?php echo $__env->yieldContent('controllerName'); ?> extends Controller {
+class ActeurController extends Controller {
 
     /**
     * Display a listing of the resource.
