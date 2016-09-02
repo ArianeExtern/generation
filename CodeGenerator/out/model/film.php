@@ -8,8 +8,10 @@ class Film extends Model
 
     protected $fillable = ["titre", "annee",  ];
 
-    function acteur { 
+    function acteur(){ 
        return $this->hasMany("App\Acteur");
     }
   
 }
+
+?>

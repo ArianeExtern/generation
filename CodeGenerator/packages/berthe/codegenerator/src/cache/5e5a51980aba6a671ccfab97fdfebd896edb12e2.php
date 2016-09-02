@@ -1,4 +1,5 @@
 <?php echo $__env->yieldContent('typeFichier'); ?>
+
 namespace <?php echo $__env->yieldContent('namespace'); ?>;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,3 +12,5 @@ class <?php echo $__env->yieldContent('modelName'); ?> extends Model
 
     <?php echo $__env->yieldContent('relations'); ?>
 }
+
+?>

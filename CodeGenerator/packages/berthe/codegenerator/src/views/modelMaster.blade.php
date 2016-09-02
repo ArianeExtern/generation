@@ -1,4 +1,5 @@
 @yield('typeFichier')
+
 namespace @yield('namespace');
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,3 +12,5 @@ class @yield('modelName') extends Model
 
     @yield('relations')
 }
+
+?>

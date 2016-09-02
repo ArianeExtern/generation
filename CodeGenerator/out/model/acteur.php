@@ -8,8 +8,10 @@ class Acteur extends Model
 
     protected $fillable = ["nom", "age",  ];
 
-    function film { 
+    function film(){ 
        return $this->belongsTo("App\Film");
     }
   
 }
+
+?>
