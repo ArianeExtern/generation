@@ -10,7 +10,7 @@
 @endsection
 
 @section('constraints')@if(array_key_exists('relations', $table))@foreach($table['relations'] as $relationType => $tables)@if($relationType == "belongsTo")@foreach($tables as $tab){!!'$table->integer(\''.$tab.'_id\')->unsigned()->index();'!!}
-            {!!'$table->foreign(\''.$tab.'_id\')->references(\'id\')->on(\''.$tab.'\')->onDelete(\'cascade\')->onUpdate(\'cascade\');'!!}}
+            {!!'$table->foreign(\''.$tab.'_id\')->references(\'id\')->on(\''.$tab.'\')->onDelete(\'cascade\')->onUpdate(\'cascade\');'!!}
 
 @endforeach
 @endif

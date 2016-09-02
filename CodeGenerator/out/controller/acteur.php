@@ -1,3 +1,4 @@
+<?php 
 namespace App\Http\Controllers;
 
 class ActeurController extends Controller {
@@ -70,3 +71,5 @@ public function destroy($id)
 }
 
 }
+
+?>

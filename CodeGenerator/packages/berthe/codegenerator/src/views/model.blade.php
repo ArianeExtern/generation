@@ -11,7 +11,7 @@
 @endsection
 
 @section('relations')@if(array_key_exists('relations', $table))@foreach($table['relations'] as $relationType => $tab1)@foreach($tab1 as $tab){{"function $tab(){ "}}
-       {!!'return $this->'.$relationType.'("App\\'.ucfirst($tab).'");'!!}
+       {!!'return $this->'.$relationType.'(\'App\\'.ucfirst($tab).'\');'!!}
     {{"}"}}
 @endforeach @endforeach @endif
 

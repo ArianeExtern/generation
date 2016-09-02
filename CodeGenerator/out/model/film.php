@@ -1,3 +1,4 @@
+<?php 
 namespace App\Film;
 
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ class Film extends Model
     protected $fillable = ["titre", "annee",  ];
 
     function acteur(){ 
-       return $this->hasMany("App\Acteur");
+       return $this->hasMany('App\Acteur');
     }
   
 }

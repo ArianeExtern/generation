@@ -1,4 +1,3 @@
-@yield('typeFichier')
 
 namespace @yield('namespace');
 

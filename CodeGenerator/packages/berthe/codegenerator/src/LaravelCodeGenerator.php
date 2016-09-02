@@ -19,6 +19,19 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
     }
 
     /**
+     * Helper function used to prepend String to a file.
+     * @param $toPrepend
+     * @param $paths
+     */
+    private function prependStringToFile($toPrepend, $paths){
+        foreach ($paths as $path){
+            $content = file_get_contents($path);
+            file_put_contents($path, "$toPrepend".$content);
+            chmod($path, 0777);
+        }
+    }
+
+    /**
      * Function generating a view Based on it name
      * @param string $template
      * @param string $outdir
@@ -39,6 +52,9 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
 
             //Change Dir Right.
             chmod($path, 0777);
+
+            if(in_array($template, array("model", "schema", "controller")))
+                yield $path;
         }
     }
 
@@ -47,7 +63,7 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
      */
     function generateLaravelModel()
     {
-        $this->generateLaravel("model", "model");
+        $this->prependStringToFile("<?php \n", $this->generateLaravel("model", "model"));
     }
 
     /**
@@ -55,7 +71,7 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
      */
     function generateLaravelSchema()
     {
-        $this->generateLaravel("schema", "schema");
+        $this->prependStringToFile("<?php \n", $this->generateLaravel("schema", "schema"));
     }
 
     /**
@@ -63,7 +79,7 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
      */
     function generateLaravelController()
     {
-        $this->generateLaravel("controller", "controller");
+        $this->prependStringToFile("<?php \n", $this->generateLaravel("controller", "controller"));
     }
 
     /**
@@ -71,7 +87,7 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
      */
     function generateLaravelForm()
     {
-        $this->generateLaravel("form", "form");
+        $this->prependStringToFile("", $this->generateLaravel("form", "form"));
     }
 
     /**

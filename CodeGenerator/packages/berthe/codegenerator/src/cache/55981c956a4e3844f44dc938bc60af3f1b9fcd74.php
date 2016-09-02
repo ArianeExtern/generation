@@ -1,4 +1,3 @@
-<?php echo $__env->yieldContent('fileType'); ?>
 
 namespace App\Http\Controllers;
 
@@ -72,3 +71,5 @@ public function destroy($id)
 }
 
 }
+
+?>

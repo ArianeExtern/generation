@@ -12,7 +12,7 @@
 
 <?php $__env->startSection('relations'); ?><?php if(array_key_exists('relations', $table)): ?><?php $__currentLoopData = $table['relations']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $relationType => $tab1): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?><?php $__currentLoopData = $tab1; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tab): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?><?php echo e("function $tab(){ "); ?>
 
-       <?php echo 'return $this->'.$relationType.'("App\\'.ucfirst($tab).'");'; ?>
+       <?php echo 'return $this->'.$relationType.'(\'App\\'.ucfirst($tab).'\');'; ?>
 
     <?php echo e("}"); ?>
 

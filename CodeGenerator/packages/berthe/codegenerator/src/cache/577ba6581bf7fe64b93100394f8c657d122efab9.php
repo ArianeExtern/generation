@@ -27,3 +27,5 @@ class <?php echo $__env->yieldContent('schemaClassName'); ?> extends Migration
         Schema::drop('<?php echo $__env->yieldContent('dropTable'); ?>');
     }
 }
+
+?>

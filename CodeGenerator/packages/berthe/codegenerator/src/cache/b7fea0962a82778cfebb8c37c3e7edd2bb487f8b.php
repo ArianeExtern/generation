@@ -10,7 +10,8 @@
 
 <?php $__env->startSection('constraints'); ?><?php if(array_key_exists('relations', $table)): ?><?php $__currentLoopData = $table['relations']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $relationType => $tables): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?><?php if($relationType == "belongsTo"): ?><?php $__currentLoopData = $tables; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tab): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?><?php echo '$table->integer(\''.$tab.'_id\')->unsigned()->index();'; ?>
 
-            <?php echo '$table->foreign(\''.$tab.'_id\')->references(\'id\')->on(\''.$tab.'\')->onDelete(\'cascade\')->onUpdate(\'cascade\');'; ?>}
+            <?php echo '$table->foreign(\''.$tab.'_id\')->references(\'id\')->on(\''.$tab.'\')->onDelete(\'cascade\')->onUpdate(\'cascade\');'; ?>
+
 
 <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
 <?php endif; ?>

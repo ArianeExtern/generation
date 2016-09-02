@@ -1,4 +1,3 @@
-<?php echo $__env->yieldContent('typeFichier'); ?>
 
 namespace <?php echo $__env->yieldContent('namespace'); ?>;
 

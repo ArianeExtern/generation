@@ -1,30 +1,30 @@
+<?php 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class @yield('schemaClassName') extends Migration
+class CreateFilmTable extends Migration
 {
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return  void
      */
     public function up()
     {
-        Schema::create('@yield('createTable')', function (Blueprint $table) {
+        Schema::create('film', function (Blueprint $table) {
             $table->increments('id');
-            @yield('fields')
-
-            @yield('constraints')
-        });
+            $table->string('titre');
+             $table->integer('annee');             
+                    });
     }
     /**
      * Reverse the migrations.
      *
-     * @return void
+     * @return  void
      */
     public function down()
     {
-        Schema::drop('@yield('dropTable')');
+        Schema::drop('film');
     }
 }
 
