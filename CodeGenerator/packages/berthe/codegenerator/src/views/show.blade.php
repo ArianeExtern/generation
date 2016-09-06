@@ -1,29 +1,26 @@
+<h1>Liste des {{ucfirst($table['title'])}}</h1>
 <table class="table table-striped">
     <thead>
-        <tr>
+        <tr>@foreach($table['attributs'] as $attrName => $attrType)
+
             <th>
-                <a href="{{url('/home/sortFilm?titre')}}">Titre</a>
-            </th>
-            <th>Catégorie</th>
-            <th>
-                <a href="{{url('/home/sortFilm?annee')}}">Année</a>
-            </th>
-            <th>Description</th>
+                <a href="{{url('/')}}">{{ucfirst($attrName)}}</a>
+            </th>@endforeach
+
         </tr>
     </thead>
 
     <tbody>
-        @forelse($films as $film)
+        S3Bforelse(${{$table['title'].'s'}} as ${{$table['title']}})
             <tr>
-                <td>{{$film->titre}}</td>
-                <td>{{$film->categorie}}</td>
-                <td>{{$film->annee}}</td>
-                <td>{{$film->description}}</td>
-            </tr>
-        @empty
+    @foreach($table['attributs'] as $attrName => $attrType)
+            <td>${!! $table['title'].'->'.$attrName !!}</td>
+    @endforeach
+        </tr>
+        S3Bempty
             <tr>
-                <td>No Film.</td>
+                <td>No {{$table['title']}}.</td>
             </tr>
-        @endforelse
+        S3Bendforelse
     </tbody>
 </table>

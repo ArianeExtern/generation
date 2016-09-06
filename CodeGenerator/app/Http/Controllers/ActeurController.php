@@ -1,7 +1,7 @@
-@extends('master')
-@section('content')
 <?php 
 namespace App\Http\Controllers;
+
+use App\Acteur;
 
 class ActeurController extends Controller {
 
@@ -12,7 +12,7 @@ class ActeurController extends Controller {
     */
     public function index()
     {
-
+        return views('acteur_show', ['acteurs' => Acteur::all()]);
     }
 
     /**
@@ -22,7 +22,7 @@ class ActeurController extends Controller {
     */
     public function create()
     {
-
+        return views('acteur');
     }
 
     /**
@@ -32,7 +32,13 @@ class ActeurController extends Controller {
     */
     public function store()
     {
+        $acteur = request()->all();
+        //To Do Validate data
 
+        //Store it
+        Acteur::create($acteur);
+
+        return back();
     }
 
     /**
@@ -43,7 +49,7 @@ class ActeurController extends Controller {
     */
     public function show($id)
     {
-
+        return views('acteur_display', ['acteur' => Acteur::find($id)]);
     }
 
     /**
@@ -76,10 +82,9 @@ class ActeurController extends Controller {
     */
     public function destroy($id)
     {
-
+        Acteur::delete($id);
+        return back();
     }
 
 }
 
-?>
-@endsection

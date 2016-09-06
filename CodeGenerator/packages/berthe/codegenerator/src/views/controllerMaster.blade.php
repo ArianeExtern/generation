@@ -1,6 +1,8 @@
 
 namespace App\Http\Controllers;
 
+use App\@yield('modelNamespace');
+
 class @yield('controllerName') extends Controller {
 
     /**
@@ -10,7 +12,7 @@ class @yield('controllerName') extends Controller {
     */
     public function index()
     {
-
+        return views('@yield('viewName')_show', ['@yield('varID')' => @yield('modelCall')]);
     }
 
     /**
@@ -20,7 +22,7 @@ class @yield('controllerName') extends Controller {
     */
     public function create()
     {
-
+        return views('@yield('createView')');
     }
 
     /**
@@ -30,7 +32,13 @@ class @yield('controllerName') extends Controller {
     */
     public function store()
     {
+        $@yield('storeVar') = request()->all();
+        //To Do Validate data
 
+        //Store it
+        @yield('ModelName1')::create($@yield('storeVar1'));
+
+        return back();
     }
 
     /**
@@ -41,7 +49,7 @@ class @yield('controllerName') extends Controller {
     */
     public function show($id)
     {
-
+        return views('@yield('singleView')_display', ['@yield('varID1')' => @yield('modelCall1')]);
     }
 
     /**
@@ -74,9 +82,9 @@ class @yield('controllerName') extends Controller {
     */
     public function destroy($id)
     {
-
+        @yield('deleteCall');
+        return back();
     }
 
 }
 
-?>

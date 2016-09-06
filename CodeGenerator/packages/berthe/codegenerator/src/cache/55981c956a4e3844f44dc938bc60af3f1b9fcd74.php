@@ -1,6 +1,8 @@
 
 namespace App\Http\Controllers;
 
+use App\<?php echo $__env->yieldContent('modelNamespace'); ?>;
+
 class <?php echo $__env->yieldContent('controllerName'); ?> extends Controller {
 
     /**
@@ -10,7 +12,7 @@ class <?php echo $__env->yieldContent('controllerName'); ?> extends Controller {
     */
     public function index()
     {
-
+        return views('<?php echo $__env->yieldContent('viewName'); ?>_show', ['<?php echo $__env->yieldContent('varID'); ?>' => <?php echo $__env->yieldContent('modelCall'); ?>]);
     }
 
     /**
@@ -20,7 +22,7 @@ class <?php echo $__env->yieldContent('controllerName'); ?> extends Controller {
     */
     public function create()
     {
-
+        return views('<?php echo $__env->yieldContent('createView'); ?>');
     }
 
     /**
@@ -30,7 +32,13 @@ class <?php echo $__env->yieldContent('controllerName'); ?> extends Controller {
     */
     public function store()
     {
+        $<?php echo $__env->yieldContent('storeVar'); ?> = request()->all();
+        //To Do Validate data
 
+        //Store it
+        <?php echo $__env->yieldContent('ModelName1'); ?>::create($<?php echo $__env->yieldContent('storeVar1'); ?>);
+
+        return back();
     }
 
     /**
@@ -41,7 +49,7 @@ class <?php echo $__env->yieldContent('controllerName'); ?> extends Controller {
     */
     public function show($id)
     {
-
+        return views('<?php echo $__env->yieldContent('singleView'); ?>_display', ['<?php echo $__env->yieldContent('varID1'); ?>' => <?php echo $__env->yieldContent('modelCall1'); ?>]);
     }
 
     /**
@@ -74,9 +82,9 @@ class <?php echo $__env->yieldContent('controllerName'); ?> extends Controller {
     */
     public function destroy($id)
     {
-
+        <?php echo $__env->yieldContent('deleteCall'); ?>;
+        return back();
     }
 
 }
 
-?>

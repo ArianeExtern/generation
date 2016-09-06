@@ -1,7 +1,7 @@
-@extends('master')
-@section('content')
 <?php 
 namespace App\Http\Controllers;
+
+use App\Film;
 
 class FilmController extends Controller {
 
@@ -12,7 +12,7 @@ class FilmController extends Controller {
     */
     public function index()
     {
-
+        return views('film_show', ['films' => Film::all()]);
     }
 
     /**
@@ -22,7 +22,7 @@ class FilmController extends Controller {
     */
     public function create()
     {
-
+        return views('film');
     }
 
     /**
@@ -32,7 +32,13 @@ class FilmController extends Controller {
     */
     public function store()
     {
+        $film = request()->all();
+        //To Do Validate data
 
+        //Store it
+        Film::create($film);
+
+        return back();
     }
 
     /**
@@ -43,7 +49,7 @@ class FilmController extends Controller {
     */
     public function show($id)
     {
-
+        return views('film_display', ['film' => Film::find($id)]);
     }
 
     /**
@@ -76,10 +82,9 @@ class FilmController extends Controller {
     */
     public function destroy($id)
     {
-
+        Film::delete($id);
+        return back();
     }
 
 }
 
-?>
-@endsection

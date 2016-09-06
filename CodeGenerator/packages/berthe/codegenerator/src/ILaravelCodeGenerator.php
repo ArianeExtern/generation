@@ -17,4 +17,5 @@ interface ILaravelCodeGenerator
 
     function generateLaravel($template = "form", $outdir = "form");
     public function generate($type = "Form");
+    public function generateLaravelShowForm();
 }

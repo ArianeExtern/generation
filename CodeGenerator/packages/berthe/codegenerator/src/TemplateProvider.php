@@ -14,4 +14,8 @@ class TemplateProvider
         return self::$templateBase."$name";
     }
 
+    public static function getResourceRouteTemplate($route = "/", $controller = "", $name=""){
+        return "Route::resource('$route', '$controller');";
+    }
+
 }

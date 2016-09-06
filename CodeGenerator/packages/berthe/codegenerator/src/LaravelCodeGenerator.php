@@ -32,12 +32,17 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
     private function prependStringToFile($toPrepend, $paths){
         foreach ($paths as $path){
             $content = file_get_contents($path);
+
+            //Normalize Code
+            $content = str_replace('S3B', '@', $content);
             file_put_contents($path, "$toPrepend".$content);
             chmod($path, 0777);
 
-            //Adding Blade Template thing.
-            $this->singlePrependStringToFile("@extends('master')\n@section('content')\n", $path);
-            $this->singleAppendStringToFile("@endsection", $path);
+            //Adding Blade Template thing if it is a view.
+            if(str_contains($path, "resources/views")){
+                $this->singlePrependStringToFile("@extends('master')\n@section('content')\n", $path);
+                $this->singleAppendStringToFile("@endsection", $path);
+            }
         }
     }
 
@@ -82,8 +87,21 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
                 $path = base_path($outdir).'/'.ucfirst($tableName).'Controller.php';
             }else if($template == "model"){
                 $path = base_path($outdir).'/'.ucfirst($tableName).'.php';
+            }else if($template == "show"){
+                $path = base_path($outdir).'/'.$tableName.'_show.blade.php';
             }else{
                 $path = base_path($outdir).'/'.$tableName.'.blade.php';
+
+                //Adding Route to routes/Web.php
+                $toAppends = TemplateProvider::getResourceRouteTemplate($tableName, ucfirst($tableName).'Controller')."\n";
+                $content = file_get_contents(base_path('routes/').'web.php');
+                //Teste if route don't already exist
+                if(!str_contains($content, $toAppends)){
+                    $this->singleAppendStringToFile(
+                        $toAppends,
+                        base_path('routes/web.php')
+                    );
+                }
             }
 
             $fileGenerator->put($path);
@@ -126,6 +144,14 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
     function generateLaravelForm()
     {
         $this->prependStringToFile("", $this->generateLaravel("form", "resources/views"));
+    }
+
+    /**
+     * Generate Shown Form.
+     */
+    public function generateLaravelShowForm()
+    {
+        $this->prependStringToFile("", $this->generateLaravel("show", "resources/views"));
     }
 
     /**
