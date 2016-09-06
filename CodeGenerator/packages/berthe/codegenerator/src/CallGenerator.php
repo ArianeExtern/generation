@@ -18,11 +18,13 @@ class CallGenerator
     public function index()
     {
         $laravelGenerator = new LaravelCodeGenerator($this->getSite());
+        $laravelGenerator->generate();
         $laravelGenerator->generate('ShowForm');
         $laravelGenerator->generate('Schema');
         $laravelGenerator->generate('Model');
         $laravelGenerator->generate('Controller');
         $laravelGenerator->generate('Schema');
+        $laravelGenerator->generateLaravelSchemaConstraint("constraint", 'database/migrations');
 
     }
 

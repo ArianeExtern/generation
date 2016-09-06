@@ -12,7 +12,7 @@ class FilmController extends Controller {
     */
     public function index()
     {
-        return views('film_show', ['films' => Film::all()]);
+        return view('film_show', ['films' => Film::all()]);
     }
 
     /**
@@ -22,7 +22,7 @@ class FilmController extends Controller {
     */
     public function create()
     {
-        return views('film');
+        return view('film');
     }
 
     /**
@@ -49,7 +49,7 @@ class FilmController extends Controller {
     */
     public function show($id)
     {
-        return views('film_display', ['film' => Film::find($id)]);
+        return view('film_display', ['film' => Film::find($id)]);
     }
 
     /**

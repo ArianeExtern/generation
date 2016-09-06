@@ -13,8 +13,6 @@ class @yield('schemaClassName') extends Migration
         Schema::create('@yield('createTable')', function (Blueprint $table) {
             $table->increments('id');
             @yield('fields')
-
-            @yield('constraints')
         });
     }
     /**

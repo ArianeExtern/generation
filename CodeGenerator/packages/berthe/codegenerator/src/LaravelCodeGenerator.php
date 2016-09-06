@@ -21,7 +21,7 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
         $p = base_path('resources/views/')."master.blade.php";
         $content = file_get_contents(__DIR__.'/views/formMaster.blade.php');
         file_put_contents($p, $content);
-        chmod($p, 0777);
+        //chmod($p, 0777);
     }
 
     /**
@@ -155,14 +155,31 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
     }
 
     /**
+     * Generate
+     * @param string $template
+     * @param string $outdir
+     */
+    public function generateLaravelSchemaConstraint($template = "constraints", $outdir ="")
+    {
+        $tbs = $this->mda;
+        $fileGenerator = new FileGenerator(TemplateProvider::getTemplate($template), ["tbs" => $tbs]);
+        $path = base_path($outdir).'/20'.date('y_m_0j_his').'_create_foreign_keys.php';
+        $fileGenerator->put($path);
+        chmod($path, 0777);
+        $this->singlePrependStringToFile("<?php \n", $path);
+    }
+
+    /**
      * Funcion generating the Files dynamically based on a Given param
      *
      * @param string $type : Allowed => Form, Model, Schema and Controller.
      */
     public function generate($type = "Form")
     {
+        echo "Generate ".$type." started !\n";
         $generateMethod = "generateLaravel".$type;
         $this->$generateMethod();
+        echo "Generate ".$type." finished !\n";
     }
 
 }

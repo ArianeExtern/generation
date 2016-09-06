@@ -1,5 +1,5 @@
 <?php 
-namespace App\Film;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 

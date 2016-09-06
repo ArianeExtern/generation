@@ -1,42 +1,27 @@
 @extends('master')
 @section('content')
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-		    Acteur 	    </title>
-
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-    </head>
-    <body>
-        <div class="container">
-	        <form action="/acteur" method="post">		
-				<div class="form-group">
+<h1>Formulaire d'ajout Acteur</h1>
+<form action="acteur" method="post">		
+				<div class="form-group-lg">
 					<label id="nom">Nom</label>
-					<input type="text" name="nom" class="form-group" placeholder="nom"/>
+					<input type="text" name="nom" class="form-control" placeholder="nom"/>
 				</div>
-							
+		
 		 		
-				<div class="form-group">
+				<div class="form-group-lg">
 					<label id="age">Age</label>
-					<input type="text" name="age" class="form-group" placeholder="age"/>
+					<input type="text" name="age" class="form-control" placeholder="age"/>
 				</div>
-							
-		  	
-				<div class="form-group">
+		
+		  
+				<div class="form-group-lg">
 					<label id="film">Film</label>
-					<select name="filmselect" class="form-group"></select>
+					<select name="filmselect" class="form-control"></select>
 				</div>
-	  	
-				<div class="form-group">
+	  
+				<br/><div class="form-group-lg">
 					<button type="submit" class="btn btn-primary">Soumettre</button>
 					<button type="reset" class="btn btn-primary">Annuler</button>
 				</div>
-	</form>
-        </div>
-    </body>
-</html>
+</form>
 @endsection

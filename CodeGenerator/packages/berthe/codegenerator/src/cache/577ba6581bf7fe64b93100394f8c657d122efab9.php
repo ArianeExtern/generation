@@ -13,8 +13,6 @@ class <?php echo $__env->yieldContent('schemaClassName'); ?> extends Migration
         Schema::create('<?php echo $__env->yieldContent('createTable'); ?>', function (Blueprint $table) {
             $table->increments('id');
             <?php echo $__env->yieldContent('fields'); ?>
-
-            <?php echo $__env->yieldContent('constraints'); ?>
         });
     }
     /**

@@ -1,7 +1,7 @@
 <?php $__env->startSection('typeFichier'); ?>  <?php $__env->stopSection(); ?>
 
 
-<?php $__env->startSection('namespace'); ?><?php echo e('App\\'.ucfirst($table['title'])); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('namespace'); ?><?php echo e('App'); ?><?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('modelName'); ?><?php echo e(ucfirst($table['title'])); ?><?php $__env->stopSection(); ?>
 

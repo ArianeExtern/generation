@@ -12,7 +12,7 @@ class <?php echo $__env->yieldContent('controllerName'); ?> extends Controller {
     */
     public function index()
     {
-        return views('<?php echo $__env->yieldContent('viewName'); ?>_show', ['<?php echo $__env->yieldContent('varID'); ?>' => <?php echo $__env->yieldContent('modelCall'); ?>]);
+        return view('<?php echo $__env->yieldContent('viewName'); ?>_show', ['<?php echo $__env->yieldContent('varID'); ?>' => <?php echo $__env->yieldContent('modelCall'); ?>]);
     }
 
     /**
@@ -22,7 +22,7 @@ class <?php echo $__env->yieldContent('controllerName'); ?> extends Controller {
     */
     public function create()
     {
-        return views('<?php echo $__env->yieldContent('createView'); ?>');
+        return view('<?php echo $__env->yieldContent('createView'); ?>');
     }
 
     /**
@@ -49,7 +49,7 @@ class <?php echo $__env->yieldContent('controllerName'); ?> extends Controller {
     */
     public function show($id)
     {
-        return views('<?php echo $__env->yieldContent('singleView'); ?>_display', ['<?php echo $__env->yieldContent('varID1'); ?>' => <?php echo $__env->yieldContent('modelCall1'); ?>]);
+        return view('<?php echo $__env->yieldContent('singleView'); ?>_display', ['<?php echo $__env->yieldContent('varID1'); ?>' => <?php echo $__env->yieldContent('modelCall1'); ?>]);
     }
 
     /**

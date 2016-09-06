@@ -12,7 +12,7 @@ class @yield('controllerName') extends Controller {
     */
     public function index()
     {
-        return views('@yield('viewName')_show', ['@yield('varID')' => @yield('modelCall')]);
+        return view('@yield('viewName')_show', ['@yield('varID')' => @yield('modelCall')]);
     }
 
     /**
@@ -22,7 +22,7 @@ class @yield('controllerName') extends Controller {
     */
     public function create()
     {
-        return views('@yield('createView')');
+        return view('@yield('createView')');
     }
 
     /**
@@ -49,7 +49,7 @@ class @yield('controllerName') extends Controller {
     */
     public function show($id)
     {
-        return views('@yield('singleView')_display', ['@yield('varID1')' => @yield('modelCall1')]);
+        return view('@yield('singleView')_display', ['@yield('varID1')' => @yield('modelCall1')]);
     }
 
     /**
