@@ -1,3 +1,5 @@
+@extends('master')
+@section('content')
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,3 +39,4 @@
         </div>
     </body>
 </html>
+@endsection

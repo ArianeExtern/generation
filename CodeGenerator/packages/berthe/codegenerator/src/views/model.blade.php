@@ -1,7 +1,7 @@
 @section('typeFichier')  @endsection
 @extends('modelMaster')
 
-@section('namespace'){{'App\\'.ucfirst($table['title'])}}@endsection
+@section('namespace'){{'App'}}@endsection
 
 @section('modelName'){{ucfirst($table['title'])}}@endsection
 

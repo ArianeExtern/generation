@@ -1,3 +1,5 @@
+@extends('master')
+@section('content')
 <?php 
 namespace App\Http\Controllers;
 
@@ -80,3 +82,4 @@ class FilmController extends Controller {
 }
 
 ?>
+@endsection

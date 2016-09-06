@@ -25,8 +25,7 @@ class GeneratorCode  extends CallGenerator {
                 ->integer("age")
                 ->belongsTo("film")
                 ->end();
-
-
+        
         return $mcd->getSite();
     }
 }

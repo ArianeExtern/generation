@@ -16,6 +16,12 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
     public function __construct($table = array())
     {
         $this->mda = $table;
+
+        //Creating Master File. (====Not Optimale But working Fine===).
+        $p = base_path('resources/views/')."master.blade.php";
+        $content = file_get_contents(__DIR__.'/views/formMaster.blade.php');
+        file_put_contents($p, $content);
+        chmod($p, 0777);
     }
 
     /**
@@ -28,7 +34,33 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
             $content = file_get_contents($path);
             file_put_contents($path, "$toPrepend".$content);
             chmod($path, 0777);
+
+            //Adding Blade Template thing.
+            $this->singlePrependStringToFile("@extends('master')\n@section('content')\n", $path);
+            $this->singleAppendStringToFile("@endsection", $path);
         }
+    }
+
+    /**
+     * Prepends String to file.
+     * @param $toPrepend
+     * @param $path
+     */
+    private function singlePrependStringToFile($toPrepend, $path){
+        $content = file_get_contents($path);
+        file_put_contents($path, "$toPrepend".$content);
+        chmod($path, 0777);
+    }
+
+    /**
+     * Appends String to file.
+     * @param $toAppend
+     * @param $path
+     */
+    private function singleAppendStringToFile($toAppend, $path){
+        $content = file_get_contents($path);
+        file_put_contents($path, $content."$toAppend");
+        chmod($path, 0777);
     }
 
     /**
@@ -81,7 +113,7 @@ class LaravelCodeGenerator implements ILaravelCodeGenerator
     }
 
     /**
-     * Function generating Controller php files for the given MCD
+     * Function generating Controller php files for the given MCD.
      */
     function generateLaravelController()
     {

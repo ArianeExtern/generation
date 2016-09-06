@@ -1,3 +1,5 @@
+@extends('master')
+@section('content')
 <?php 
 namespace App\Film;
 
@@ -15,4 +17,4 @@ class Film extends Model
   
 }
 
-?>
+?>@endsection

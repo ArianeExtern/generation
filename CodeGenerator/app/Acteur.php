@@ -1,3 +1,5 @@
+@extends('master')
+@section('content')
 <?php 
 namespace App\Acteur;
 
@@ -15,4 +17,4 @@ class Acteur extends Model
   
 }
 
-?>
+?>@endsection
